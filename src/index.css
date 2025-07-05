@@ -1,0 +1,62 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+}
+
+label {
+  font-weight: bold;
+}
+
+input {
+  padding: 3px 5px;
+  border: 1px solid #CCC;
+  border-radius: 3px;
+}
+
+button {
+  border: 1px solid #CCC;
+  border-radius: 5px;
+  padding: 5px 12px;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.form-input {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.form-actions {
+  align-self: self-end;
+  display: flex;
+  gap: 10px;
+}
+
+.card {
+  padding: 10px 5px;
+  box-shadow: 1px 1px 3px #CCC;
+  display: flex;
+  min-width: 250px;
+  max-width: 250px;
+  border-radius: 5px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card .title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.card .content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
