@@ -16,7 +16,7 @@ const PersonalDetails: FC<PersonalDetailsProps> = ({ onNext }) => {
         <input id="family" />
       </div>
       <div className="form-actions">
-        <button onClick={onNext}>Next</button>
+        <button onClick={onNext} className="primary">Next</button>
       </div>
     </>
   )

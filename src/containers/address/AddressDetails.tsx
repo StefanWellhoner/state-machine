@@ -18,7 +18,7 @@ const AddressDetails: FC<AddressDetailsProps> = ({ onNext, onBack }) => {
       </div>
       <div className="form-actions">
         <button onClick={onBack}>Back</button>
-        <button onClick={onNext}>Next</button>
+        <button onClick={onNext} className="primary">Next</button>
       </div>
     </>
   )

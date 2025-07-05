@@ -26,7 +26,7 @@ const Confirmation: FC<ConfirmationProps> = ({ onSubmit, onBack }) => {
       </div>
       <div className="form-actions">
         <button onClick={onBack}>Back</button>
-        <button onClick={onSubmit}>Submit</button>
+        <button onClick={onSubmit} className="primary">Submit</button>
       </div>
     </>
   )

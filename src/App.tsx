@@ -5,14 +5,14 @@ import Robot from "./pages/robot/Robot";
 
 export function App() {
   return (
-    <>
+    <div className="main">
       <div>
         <Register machine={registerMachine} />
       </div>
-      <div className="main">
+      <div>
         <Robot machine={robotMachine} />
       </div>
-    </>
+    </div>
   );
 }
 

@@ -1,27 +1,38 @@
-type State<S extends string, G extends string> = {
-  target: S;
-  guards?: G[]
-}
-
-type Transition<S extends string, E extends string, G extends string> = {
-  on: {
-    [key in E]?: State<S, G>
+type State<
+  S extends PropertyKey,
+  G extends PropertyKey> = {
+    target: S;
+    guards?: G[]
   }
-}
 
-type Machine<S extends string, E extends string, G extends string> = {
-  id: string;
-  initial: S;
-  transitions: {
-    [key in S]: Transition<S, E, G>
-  },
-  guards?: {
-    [key in G]: () => boolean
+type Transition<
+  S extends PropertyKey,
+  E extends PropertyKey,
+  G extends PropertyKey = never> = {
+    on: {
+      [key in E]?: State<S, G>
+    }
   }
-}
 
-class FSM<S extends string, E extends string, G extends string> {
-  machine: Machine<S, E, G>
+type Machine<
+  S extends PropertyKey,
+  E extends PropertyKey,
+  G extends PropertyKey = never> = {
+    id: string;
+    initial: S;
+    transitions: {
+      [key in S]: Transition<S, E, G>
+    },
+    guards?: {
+      [key in G]: () => boolean
+    }
+  }
+
+class FSM<
+  S extends PropertyKey,
+  E extends PropertyKey,
+  G extends PropertyKey = never> {
+  private machine: Machine<S, E, G>
   state: S;
 
   constructor(machine: Machine<S, E, G>) {
@@ -43,7 +54,7 @@ class FSM<S extends string, E extends string, G extends string> {
         this.state = target;
       }
     } else {
-      throw new Error(`Invalid transistion from ${this.state} on ${event}`)
+      throw new Error(`Invalid transistion from ${this.state.toString()} on ${event.toString()}`)
     }
   }
 

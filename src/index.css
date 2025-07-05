@@ -3,7 +3,6 @@ body {
   margin: 0;
   padding: 0;
   font-size: 16px;
-  background-color: #888;
 }
 
 label {
@@ -17,19 +16,31 @@ input {
 }
 
 button {
-  border: 1px solid #CCC;
+  border: none;
+  text-transform: capitalize;
   border-radius: 5px;
-  padding: 5px 12px;
+  padding: 0.5rem 1rem;
 }
 
 button:hover {
   cursor: pointer;
 }
 
+button.primary{
+  background-color: #323EA8;
+  color: white;
+}
+
+button.primary:hover{
+  background-color: #3947BF;
+}
+
 .main {
   display: flex;
   margin-top: 20px;
   justify-self: center;
+  flex-direction: row;
+  gap: 30px;
 }
 
 .form-input {
@@ -46,10 +57,9 @@ button:hover {
 
 .card {
   padding: 10px 5px;
-  box-shadow: 1px 1px 3px #CCC;
+  box-shadow: 0px 0px 8px #CCC;
   display: flex;
   min-width: 250px;
-  max-width: 250px;
   border-radius: 5px;
   flex-direction: column;
   align-items: center;
@@ -84,18 +94,18 @@ button:hover {
   border-radius: 9999px;
 }
 
-.off {
+.light-container .off {
   background-color: #2E2E2E;
 }
 
-.red {
+.light-container .red {
   background-color: #EE2222;
 }
 
-.yellow {
+.light-container .yellow {
   background-color: #EBAB34;
 }
 
-.green {
+.light-container .green {
   background-color: #22EE22;
 }

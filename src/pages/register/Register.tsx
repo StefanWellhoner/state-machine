@@ -24,12 +24,13 @@ const Register: FC<RegisterProps> = ({ machine }) => {
   }
 
   const handleSubmit = () => {
+    machine.send("submit")
+    setMachineState(machine.state)
     console.log("Submitted")
   }
 
   return (
-    <Card title="Register">
-      {machineState}
+    <Card title={machineState}>
       {machineState === "personal" && <PersonalDetails onNext={handleNext} />}
       {machineState === "address" && <AddressDetails onNext={handleNext} onBack={handleBack} />}
       {machineState === "confirmation" && <Confirmation onBack={handleBack} onSubmit={handleSubmit} />}

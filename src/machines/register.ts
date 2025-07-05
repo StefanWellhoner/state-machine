@@ -10,25 +10,37 @@ const registerMachine = new FSM<FormStates, FormEvents, FormGuards>({
   transitions: {
     personal: {
       on: {
-        next: { target: "address", guards: ["hasPersonalData"] },
+        next: {
+          target: "address",
+          guards: ["hasPersonalData"]
+        },
       }
     },
     address: {
       on: {
-        next: { target: "confirmation", guards: ["hasAddressData"] },
-        back: { target: "personal" }
+        next: {
+          target: "confirmation",
+          guards: ["hasAddressData"]
+        },
+        back: {
+          target: "personal"
+        }
       }
     },
     confirmation: {
       on: {
-        back: { target: "address" },
-        submit: { target: "personal" }
+        back: {
+          target: "address"
+        },
+        submit: {
+          target: "personal"
+        }
       }
     }
   },
   guards: {
     "hasAddressData": () => { return false },
-    "hasPersonalData": () => { return false }
+    "hasPersonalData": () => { return true }
   }
 })
 
