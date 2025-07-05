@@ -2,19 +2,20 @@ import FSM from "@/lib/machine";
 
 export type FormStates = "personal" | "address" | "confirmation";
 export type FormEvents = "next" | "back" | "submit";
+export type FormGuards = "hasPersonalData" | "hasAddressData"
 
-const registerMachine = new FSM<FormStates, FormEvents, "">({
+const registerMachine = new FSM<FormStates, FormEvents, FormGuards>({
   id: "register",
   initial: "personal",
-  transistions: {
+  transitions: {
     personal: {
       on: {
-        next: { target: "address" },
+        next: { target: "address", guards: ["hasPersonalData"] },
       }
     },
     address: {
       on: {
-        next: { target: "confirmation" },
+        next: { target: "confirmation", guards: ["hasAddressData"] },
         back: { target: "personal" }
       }
     },
@@ -24,6 +25,10 @@ const registerMachine = new FSM<FormStates, FormEvents, "">({
         submit: { target: "personal" }
       }
     }
+  },
+  guards: {
+    "hasAddressData": () => { return false },
+    "hasPersonalData": () => { return false }
   }
 })
 

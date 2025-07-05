@@ -3,6 +3,7 @@ body {
   margin: 0;
   padding: 0;
   font-size: 16px;
+  background-color: #888;
 }
 
 label {
@@ -23,6 +24,12 @@ button {
 
 button:hover {
   cursor: pointer;
+}
+
+.main {
+  display: flex;
+  margin-top: 20px;
+  justify-self: center;
 }
 
 .form-input {
@@ -59,4 +66,36 @@ button:hover {
   flex-direction: column;
   gap: 10px;
   align-items: center;
+}
+
+.light-container {
+  background-color: #3E3E3E;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 15px;
+  border-radius: 15px;
+}
+
+.light {
+  width: 150px;
+  height: 150px;
+  border-radius: 9999px;
+}
+
+.off {
+  background-color: #2E2E2E;
+}
+
+.red {
+  background-color: #EE2222;
+}
+
+.yellow {
+  background-color: #EBAB34;
+}
+
+.green {
+  background-color: #22EE22;
 }

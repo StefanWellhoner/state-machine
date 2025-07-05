@@ -1,8 +1,6 @@
 type State<S extends string, G extends string> = {
   target: S;
-  guards?: {
-    [key in G]: () => boolean
-  }
+  guards?: G[]
 }
 
 type Transition<S extends string, E extends string, G extends string> = {
@@ -14,8 +12,11 @@ type Transition<S extends string, E extends string, G extends string> = {
 type Machine<S extends string, E extends string, G extends string> = {
   id: string;
   initial: S;
-  transistions: {
+  transitions: {
     [key in S]: Transition<S, E, G>
+  },
+  guards?: {
+    [key in G]: () => boolean
   }
 }
 
@@ -29,12 +30,36 @@ class FSM<S extends string, E extends string, G extends string> {
   }
 
   send(event: E) {
-    const nextState = this.machine.transistions[this.state].on[event]
+    const nextState = this.machine.transitions[this.state].on[event]
     if (nextState) {
-      this.state = nextState.target;
+      const { target, guards } = nextState
+      let passed = true;
+
+      if (guards) {
+        passed = this.validateGuards(guards)
+      }
+
+      if (passed) {
+        this.state = target;
+      }
     } else {
       throw new Error(`Invalid transistion from ${this.state} on ${event}`)
     }
+  }
+
+  private validateGuards(guards: G[]) {
+    if (this.machine.guards) {
+      let passed = true
+      for (let i = 0; i < guards.length; i++) {
+        const guardKey = guards[i]
+        const guard = this.machine.guards[guardKey]
+        let result = guard()
+        passed = result
+        if (!result) break;
+      }
+      return passed;
+    }
+    return true
   }
 }
 

@@ -3,11 +3,11 @@ import AddressDetails from "@/containers/address"
 import Confirmation from "@/containers/confirmation"
 import PersonalDetails from "@/containers/personal"
 import FSM from "@/lib/machine"
-import { FormEvents, FormStates } from "@/machines/register"
+import { FormEvents, FormGuards, FormStates } from "@/machines/register"
 import { FC, useState } from "react"
 
 type RegisterProps = {
-  machine: FSM<FormStates, FormEvents>
+  machine: FSM<FormStates, FormEvents, FormGuards>
 }
 
 const Register: FC<RegisterProps> = ({ machine }) => {
