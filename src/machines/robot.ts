@@ -1,34 +1,46 @@
 import FSM from "@/lib/machine";
 
-export type RobotStates = "green" | "yellow" | "red"
-export type RobotEvents = "change"
+export type RobotStates = "green" | "yellow" | "red";
+export type RobotEvents = "change";
 
 const robot = new FSM<RobotStates, RobotEvents>({
   id: "robot",
   initial: "red",
+  states: {
+    red: {
+      entry() {
+        console.log("Entered red");
+      },
+      exit() {
+        console.log("Exitted red");
+      },
+    },
+    yellow: {},
+    green: {},
+  },
   transitions: {
     red: {
       on: {
         change: {
-          target: "green"
-        }
-      }
+          target: "green",
+        },
+      },
     },
     green: {
       on: {
         change: {
-          target: "yellow"
-        }
-      }
+          target: "yellow",
+        },
+      },
     },
     yellow: {
       on: {
         change: {
-          target: "red"
-        }
-      }
-    }
-  }
-})
+          target: "red",
+        },
+      },
+    },
+  },
+});
 
-export default robot
+export default robot;

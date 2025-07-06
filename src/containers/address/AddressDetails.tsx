@@ -2,8 +2,8 @@ import { FC } from "react";
 
 type AddressDetailsProps = {
   onNext: () => void;
-  onBack: () => void
-}
+  onBack: () => void;
+};
 
 const AddressDetails: FC<AddressDetailsProps> = ({ onNext, onBack }) => {
   return (
@@ -18,10 +18,12 @@ const AddressDetails: FC<AddressDetailsProps> = ({ onNext, onBack }) => {
       </div>
       <div className="form-actions">
         <button onClick={onBack}>Back</button>
-        <button onClick={onNext} className="primary">Next</button>
+        <button onClick={onNext} className="primary">
+          Next
+        </button>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default AddressDetails
+export default AddressDetails;

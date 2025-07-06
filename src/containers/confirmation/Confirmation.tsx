@@ -3,7 +3,7 @@ import { FC } from "react";
 type ConfirmationProps = {
   onBack: () => void;
   onSubmit: () => void;
-}
+};
 
 const Confirmation: FC<ConfirmationProps> = ({ onSubmit, onBack }) => {
   return (
@@ -26,10 +26,12 @@ const Confirmation: FC<ConfirmationProps> = ({ onSubmit, onBack }) => {
       </div>
       <div className="form-actions">
         <button onClick={onBack}>Back</button>
-        <button onClick={onSubmit} className="primary">Submit</button>
+        <button onClick={onSubmit} className="primary">
+          Submit
+        </button>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Confirmation
+export default Confirmation;
