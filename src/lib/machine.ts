@@ -66,7 +66,7 @@ class FSM<
       }
     } else {
       throw new Error(
-        `Invalid transistion from ${this.state.toString()} on ${event.toString()}`,
+        `Invalid transition from ${this.state.toString()} on ${event.toString()}`,
       );
     }
   }
