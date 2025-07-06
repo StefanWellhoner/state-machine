@@ -12,7 +12,7 @@ const robot = new FSM<RobotStates, RobotEvents>({
         console.log("Entered red");
       },
       exit() {
-        console.log("Exitted red");
+        console.log("Exited red");
       },
     },
     yellow: {},
