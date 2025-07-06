@@ -1,8 +1,8 @@
 import { FC } from "react";
 
 type PersonalDetailsProps = {
-  onNext: () => void
-}
+  onNext: () => void;
+};
 
 const PersonalDetails: FC<PersonalDetailsProps> = ({ onNext }) => {
   return (
@@ -16,10 +16,12 @@ const PersonalDetails: FC<PersonalDetailsProps> = ({ onNext }) => {
         <input id="family" />
       </div>
       <div className="form-actions">
-        <button onClick={onNext} className="primary">Next</button>
+        <button onClick={onNext} className="primary">
+          Next
+        </button>
       </div>
     </>
-  )
-}
+  );
+};
 
 export default PersonalDetails;

@@ -11,7 +11,7 @@ label {
 
 input {
   padding: 3px 5px;
-  border: 1px solid #CCC;
+  border: 1px solid #ccc;
   border-radius: 3px;
 }
 
@@ -26,13 +26,13 @@ button:hover {
   cursor: pointer;
 }
 
-button.primary{
-  background-color: #323EA8;
+button.primary {
+  background-color: #323ea8;
   color: white;
 }
 
-button.primary:hover{
-  background-color: #3947BF;
+button.primary:hover {
+  background-color: #3947bf;
 }
 
 .main {
@@ -57,7 +57,7 @@ button.primary:hover{
 
 .card {
   padding: 10px 5px;
-  box-shadow: 0px 0px 8px #CCC;
+  box-shadow: 0px 0px 8px #ccc;
   display: flex;
   min-width: 250px;
   border-radius: 5px;
@@ -79,7 +79,7 @@ button.primary:hover{
 }
 
 .light-container {
-  background-color: #3E3E3E;
+  background-color: #3e3e3e;
   width: fit-content;
   display: flex;
   flex-direction: column;
@@ -95,17 +95,17 @@ button.primary:hover{
 }
 
 .light-container .off {
-  background-color: #2E2E2E;
+  background-color: #2e2e2e;
 }
 
 .light-container .red {
-  background-color: #EE2222;
+  background-color: #ee2222;
 }
 
 .light-container .yellow {
-  background-color: #EBAB34;
+  background-color: #ebab34;
 }
 
 .light-container .green {
-  background-color: #22EE22;
+  background-color: #22ee22;
 }

@@ -1,9 +1,9 @@
-import { FC, ReactNode } from "react"
+import { FC, ReactNode } from "react";
 
 type CardProps = {
   title: string;
-  children: ReactNode
-}
+  children: ReactNode;
+};
 
 const Card: FC<CardProps> = ({ title, children }) => {
   return (
@@ -12,7 +12,7 @@ const Card: FC<CardProps> = ({ title, children }) => {
       <div className="content">{children}</div>
       <div></div>
     </div>
-  )
-}
+  );
+};
 
-export default Card
+export default Card;
