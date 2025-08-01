@@ -1,9 +1,9 @@
-type State<S extends PropertyKey, G extends PropertyKey> = {
+export type State<S extends PropertyKey, G extends PropertyKey> = {
   target: S;
   guards?: G[];
 };
 
-type Transition<
+export type Transition<
   S extends PropertyKey,
   E extends PropertyKey,
   G extends PropertyKey = never,
@@ -13,12 +13,12 @@ type Transition<
   };
 };
 
-type StateDef = {
+export type StateDef = {
   entry?: () => void;
   exit?: () => void;
 };
 
-type Machine<
+export type Machine<
   S extends PropertyKey,
   E extends PropertyKey,
   G extends PropertyKey = never,
@@ -37,19 +37,20 @@ type Machine<
 };
 
 class FSM<
-  S extends PropertyKey,
-  E extends PropertyKey,
-  G extends PropertyKey = never,
+  State extends PropertyKey,
+  Event extends PropertyKey,
+  Guards extends PropertyKey = never,
 > {
-  private machine: Machine<S, E, G>;
-  state: S;
+  private machine: Machine<State, Event, Guards>;
+  state: State;
 
-  constructor(machine: Machine<S, E, G>) {
+  constructor(machine: Machine<State, Event, Guards>) {
     this.machine = machine;
     this.state = machine.initial;
+    this.machine.states[this.state].entry?.();
   }
 
-  send(event: E) {
+  send(event: Event) {
     const nextState = this.machine.transitions[this.state].on[event];
     if (nextState) {
       const { target, guards } = nextState;
@@ -71,7 +72,7 @@ class FSM<
     }
   }
 
-  private validateGuards(guards: G[]) {
+  private validateGuards(guards: Guards[]) {
     if (!this.machine.guards) {
       if (guards.length > 0) {
         throw new Error(
