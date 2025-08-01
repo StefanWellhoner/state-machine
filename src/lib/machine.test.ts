@@ -20,7 +20,8 @@ const machine: Machine<TestStates, TestEvents, TestGuards> = {
       }
     },
     state2: {
-    }, state3: {}
+    },
+    state3: {}
   },
   transitions: {
     state1: {
