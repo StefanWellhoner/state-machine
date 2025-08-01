@@ -1,8 +1,8 @@
 import FSM, { Machine } from "./machine";
 
-type TestStates = "state1" | "state2" | "state3"
-type TestEvents = "transition1" | "transition2" | "transition3"
-type TestGuards = "guard1" | "guard2"
+type TestStates = "state1" | "state2" | "state3";
+type TestEvents = "transition1" | "transition2" | "transition3";
+type TestGuards = "guard1" | "guard2";
 const mockedEntry = jest.fn();
 const mockedExit = jest.fn();
 const mockedGuard1 = jest.fn().mockReturnValue(true);
