@@ -16,6 +16,8 @@
     "react-dom": "^19"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.28.3",
+    "@babel/preset-typescript": "^7.27.1",
     "@types/bun": "latest",
     "@types/jest": "^30.0.0",
     "@types/react": "^19",
