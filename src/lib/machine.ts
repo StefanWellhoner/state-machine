@@ -13,15 +13,16 @@ export type Transition<
   };
 };
 
-export type StateDef = {
-  entry?: () => void;
-  exit?: () => void;
+export type StateDef<C = unknown> = {
+  entry?: (context?: C) => void;
+  exit?: (context?: C) => void;
 };
 
 export type Machine<
   S extends PropertyKey,
   E extends PropertyKey,
   G extends PropertyKey = never,
+  C = unknown,
 > = {
   id: string;
   initial: S;
@@ -29,10 +30,10 @@ export type Machine<
     [key in S]: Transition<S, E, G>;
   };
   guards?: {
-    [key in G]: () => boolean;
+    [key in G]: (context?: C) => boolean;
   };
   states: {
-    [key in S]: StateDef;
+    [key in S]: StateDef<C>;
   };
 };
 
@@ -40,14 +41,17 @@ class FSM<
   State extends PropertyKey,
   Event extends PropertyKey,
   Guards extends PropertyKey = never,
+  Context = unknown,
 > {
-  private machine: Machine<State, Event, Guards>;
+  private machine: Machine<State, Event, Guards, Context>;
   state: State;
+  context?: Context;
 
-  constructor(machine: Machine<State, Event, Guards>) {
+  constructor(machine: Machine<State, Event, Guards, Context>, context?: Context) {
     this.machine = machine;
     this.state = machine.initial;
-    this.machine.states[this.state].entry?.();
+    this.context = context;
+    this.machine.states[this.state].entry?.(this.context);
   }
 
   send(event: Event) {
@@ -61,15 +65,19 @@ class FSM<
       }
 
       if (passed) {
-        this.machine.states[this.state].exit?.();
+        this.machine.states[this.state].exit?.(this.context);
         this.state = target;
-        this.machine.states[this.state].entry?.();
+        this.machine.states[this.state].entry?.(this.context);
       }
     } else {
       throw new Error(
         `Invalid transition from ${this.state.toString()} on ${event.toString()}`,
       );
     }
+  }
+
+  updateContext(newContext: Context) {
+    this.context = newContext;
   }
 
   private validateGuards(guards: Guards[]) {
@@ -87,7 +95,7 @@ class FSM<
       if (!guard) {
         throw new Error(`Guard function '${String(guardKey)}' is not defined`);
       }
-      if (!guard()) return false;
+      if (!guard(this.context)) return false;
     }
     return true;
   }
